@@ -7,7 +7,7 @@ var praxisboerseApp = angular.module("praxisboerseApp",[
 
 praxisboerseApp.config(['$routeProvider',
   function($routeProvider){
-    $routeProvider.when('jobs',{
+    $routeProvider.when('/jobs',{
       templateUrl:"partials/job-list.html",
       controller:"JobListCtrl"
     });
