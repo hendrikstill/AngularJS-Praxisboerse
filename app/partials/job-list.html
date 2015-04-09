@@ -2,13 +2,22 @@
   <div class="page-header">
     <h3>Job Angebote</h3>
   </div>
-  <div class="container">
-      Land:
-      <select ng-model="countryQuery">
-          <option value="">alle</option>
-          <option>Schland</option>
-          <option>Iran</option>
+  <div class="container row">
+    <div class="col-md-4">
+      <label for="keyFilter">Suche:</label>
+      <input name="keyFilter"/>
+    </div>
+    <div class="col-md-4">
+      <label for="countryFilter">Land</label>
+      <select ng-model="countryQuery" name="countryFilter">
+        <option value="">alle</option>
+        <option>Schland</option>
+        <option>Iran</option>
       </select>
+    </div>
+    <div class="col-md-4">
+
+    </div>
   </div>
   <div class="container">
     <table class="table table-hover">
