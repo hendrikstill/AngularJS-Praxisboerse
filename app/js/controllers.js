@@ -2,8 +2,8 @@
 
 var praxisboerseControlellers = angular.module("praxisboerseControllers",[]);
 
-praxisboerseControlellers.controller("JobListCtrl",['$scope','Job',
-function($scope, Job){
+praxisboerseControlellers.controller("JobListCtrl",['$scope',
+function($scope){
   $scope.jobs = [
   {'name': 'Nexus S',
   'snippet': 'Fast just got faster with Nexus S.',
