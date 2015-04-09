@@ -1,7 +1,33 @@
-<div>
-  <table>
-    <tr ng-repeat="job in jobs">
-      <td>{{job.name}}</td><td></td>
-    </tr>
-  </table>
+<div class="container">
+  <div class="page-header">
+    <h3>Job Angebote</h3>
+  </div>
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Firma</th>
+          <th>Typ</th>
+          <th>Beschreibung</th>
+          <th>Land</th>
+          <th>Ort</th>
+          <th>Einsatzort</th>
+          <th>gültig bis</th>
+          <th>Merkzettel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="job in jobs">
+          <td>{{job.companyName}}</td>
+          <td>{{job.type}}</td>
+          <td>{{job.shortDescription}}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
