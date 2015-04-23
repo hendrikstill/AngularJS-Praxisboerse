@@ -5,7 +5,7 @@
   <div class="container row">
     <div class="col-md-4">
       <label for="keyFilter">Suche:</label>
-      <input name="keyFilter"/>
+      <input ng-model="textSearch" name="keyFilter"/>
     </div>
     <div class="col-md-4">
       <label for="countryFilter">Land</label>
@@ -35,7 +35,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="job in jobs | filter:countryQuery">
+          <tr ng-repeat="job in jobs | filter:countryQuery | filter:textSearch">
             <td>{{job.companyName}}</td>
             <td>{{job.type}}</td>
             <td>{{job.shortDescription}}</td>
