@@ -1,7 +1,7 @@
 var praxisboerseApp = angular.module("praxisboerseApp",[
   'ngRoute',
   'praxisboerseControllers',
-  'jobServices','base64'
+  'jobServices','countryServices','base64'
 ]);
 
 praxisboerseApp.config(['$routeProvider','$httpProvider',

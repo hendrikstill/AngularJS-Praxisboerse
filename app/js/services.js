@@ -1,6 +1,19 @@
 'use strict';
 
 var jobServices = angular.module('jobServices',['ngResource']);
+var countryServices = angular.module('countryServices',['ngResource']);
+
+countryServices.factory('Country',['$resource',
+  function($resource){
+    return $resource('https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/countries/all',
+    {
+        query: {
+          method: 'GET',
+          withCredentials:true,
+          isArray:true
+        }
+    });
+  }]);
 
 jobServices.factory('Job', ['$resource',
   function($resource){
