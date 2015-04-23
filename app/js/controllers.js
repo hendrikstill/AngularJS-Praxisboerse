@@ -10,3 +10,12 @@ function($scope,$http,Job){
   });
 
 }]);
+
+praxisboerseControlellers.controller("CompanyDetailsCtrl",['$scope','$http','$routeParams','Company',
+  function($scope,$http,$routeParams,Company){
+
+    Company.query({id: $routeParams.id}, function(company){
+      $scope.company = company;
+    });
+
+}]);

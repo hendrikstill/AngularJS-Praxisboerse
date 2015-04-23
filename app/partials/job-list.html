@@ -36,7 +36,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="job in jobs | filter:countryQuery | filter:textSearch">
-            <td>{{job.companyName}}</td>
+            <td><a href="#company/{{job.companyId}}">{{job.companyName}}</a></td>
             <td>{{job.type}}</td>
             <td>{{job.shortDescription}}</td>
             <td>{{job.country}}</td>

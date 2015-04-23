@@ -28,3 +28,17 @@ jobServices.factory('Job', ['$resource',
     });
   }]
 );
+
+jobServices.factory('Company', ['$resource',
+  function($resource){
+
+    return $resource('https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/company/:id/',
+    {id: '191'},
+    {
+      query: {
+        method:'GET',
+        withCredentials:true,
+      }
+    });
+  }]
+);
