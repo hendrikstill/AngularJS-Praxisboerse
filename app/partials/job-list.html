@@ -5,13 +5,19 @@
   <div class="container row">
     <div class="col-md-4">
       <label for="keyFilter">Suche:</label>
-      <input ng-model="textSearch" name="keyFilter"/>
+      <input ng-model="textQuery" name="keyFilter" ng-change="change()"/>
     </div>
     <div class="col-md-4">
       <label for="countryFilter">Land</label>
       <select ng-model="countryQuery" name="countryFilter">
         <option value="">alle</option>
         <option ng-repeat="country in countries">{{country.name}}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="typeFilter">Typ</label>
+      <select ng-model="typeQuery" name="typeFilter" ng-change="change()">
+        <option ng-repeat="type in types" value="{{type.shortname}}">{{type.name}}</option>
       </select>
     </div>
     <div class="col-md-4">

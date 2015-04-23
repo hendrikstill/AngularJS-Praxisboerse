@@ -2,8 +2,12 @@
 
 var praxisboerseControlellers = angular.module("praxisboerseControllers",[]);
 
-praxisboerseControlellers.controller("JobListCtrl",['$scope','$http','Job','Country',
-function($scope,$http,Job,Country){
+praxisboerseControlellers.controller("JobListCtrl",['$scope','$http','Job','Country','Type',
+function($scope,$http,Job,Country,Type){
+
+  Type.query({}, function(types) {
+    $scope.types = types;
+  });
 
   Country.query({},function(countries){
     $scope.countries = countries;
@@ -12,6 +16,12 @@ function($scope,$http,Job,Country){
   Job.query({typ:"workingstudent",start:"2",count:"2"},function(offers){
     $scope.jobs = offers.offers;
   });
+
+  $scope.change = function(){
+    Job.query({typ:$scope.typeQuery, key:$scope.textQuery},function(offers){
+      $scope.jobs = offers.offers;
+    });
+  };
 
 }]);
 

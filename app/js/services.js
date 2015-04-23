@@ -2,6 +2,7 @@
 
 var jobServices = angular.module('jobServices',['ngResource']);
 var countryServices = angular.module('countryServices',['ngResource']);
+var typeServices = angular.module('typeServices',['ngResource']);
 
 countryServices.factory('Country',['$resource',
   function($resource){
@@ -41,6 +42,17 @@ jobServices.factory('Job', ['$resource',
     });
   }]
 );
+
+jobServices.factory('Type', ['$resource',
+  function($resource){
+    return $resource('https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/offertypes/all',{},{
+      query: {
+        method:'GET',
+        withCredentials:true,
+        isArray:true
+      }
+    });
+  }]);
 
 jobServices.factory('Company', ['$resource',
   function($resource){
