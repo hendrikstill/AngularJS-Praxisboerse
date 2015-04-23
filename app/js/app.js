@@ -1,8 +1,7 @@
 var praxisboerseApp = angular.module("praxisboerseApp",[
   'ngRoute',
-  'praxisboerseControllers'
-  //'praxisboerseFilters',
-  //'praxisboerseService'
+  'praxisboerseControllers',
+  'jobServices','base64'
 ]);
 
 praxisboerseApp.config(['$routeProvider','$httpProvider',
@@ -12,6 +11,6 @@ praxisboerseApp.config(['$routeProvider','$httpProvider',
       controller:"JobListCtrl"
     });
     $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.withCredentials = true;
   }
 ]);
