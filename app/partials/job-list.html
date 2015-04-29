@@ -52,7 +52,7 @@
           </tr>
         </tbody>
       </table>
-      <nav>
+      <nav ng-if="isMobile">
         <pagination total-items="totalHits" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" ng-change="change()"></pagination>
       </nav>
     </div>
