@@ -24,7 +24,7 @@ function($scope,$http,Job,Country,Type,NotepadAdd){
           $scope.isMobile = true;
     }
 
-    Job.query({typ:$scope.typeQuery, key:$scope.textQuery, count:count, start: $scope.currentPage},function(offers){
+    Job.query({typ:$scope.typeQuery, key:$scope.textQuery, count:count, start: this.currentPage},function(offers){
       $scope.totalHits = offers.totalHits;
       $scope.jobs = offers.offers;
     });
