@@ -1,7 +1,7 @@
 var praxisboerseApp = angular.module("praxisboerseApp",[
   'ngRoute',
   'praxisboerseControllers',
-  'jobServices','countryServices','base64','ui.bootstrap'
+  'jobServices','countryServices','notepadServices','base64','ui.bootstrap'
 ]);
 
 praxisboerseApp.config(['$routeProvider','$httpProvider',
@@ -13,6 +13,10 @@ praxisboerseApp.config(['$routeProvider','$httpProvider',
     .when('/company/:id',{
       templateUrl:"partials/company-details.html",
       controller:"CompanyDetailsCtrl"
+    })
+    .when('/notepad',{
+      templateUrl:"partials/notepad.html",
+      controller:"NotepadCtrl"
     });
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.withCredentials = true;

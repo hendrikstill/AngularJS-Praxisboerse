@@ -48,7 +48,7 @@
             <td>{{job.companyLocation}}</td>
             <td>{{job.usageSite}}</td>
             <td>{{job.validDate}}</td>
-            <td>{{job.onNotepad}}</td>
+            <td ng-click="addToNotepad(job.id)"><button>{{job.onNotepad}}</button></td>
           </tr>
         </tbody>
       </table>

@@ -2,8 +2,8 @@
 
 var praxisboerseControlellers = angular.module("praxisboerseControllers",[]);
 
-praxisboerseControlellers.controller("JobListCtrl",['$scope','$http', 'Job','Country','Type',
-function($scope,$http,Job,Country,Type){
+praxisboerseControlellers.controller("JobListCtrl",['$scope','$http', 'Job','Country','Type','NotepadAdd',
+function($scope,$http,Job,Country,Type,NotepadAdd){
   $scope.currentPage = 0;
 
   Type.query({}, function(types) {
@@ -29,6 +29,13 @@ function($scope,$http,Job,Country,Type){
       $scope.jobs = offers.offers;
     });
   };
+
+  $scope.addToNotepad = function(id){
+    NotepadAdd.query({id: id}, function(notepad){
+      console.log("ausgeführt");
+    });
+  };
+   
 }]);
 
 praxisboerseControlellers.controller("CompanyDetailsCtrl",['$scope','$http','$routeParams','Company',
@@ -38,4 +45,25 @@ praxisboerseControlellers.controller("CompanyDetailsCtrl",['$scope','$http','$ro
       $scope.company = company;
     });
 
+}]);
+
+praxisboerseControlellers.controller("NotepadCtrl", ['$scope', '$http', '$routeParams', 'Notepad', 'NotepadAdd',
+  function($scope, $http, $routeParams, Notepad, NotepadAdd){
+
+    $scope.click = function(){
+      return $resource('https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/' + $routeParams.id,
+      {},
+      {
+        query: {
+          method:'DELETE',
+          withCredentials:true
+        }
+      }
+    )};
+    
+    console.log(Notepad);
+
+    Notepad.query({}, function(notepad){
+      $scope.jobs = notepad.offers;
+    });
 }]);
