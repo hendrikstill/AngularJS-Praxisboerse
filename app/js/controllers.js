@@ -30,9 +30,10 @@ function($scope,$http,Job,Country,Type,NotepadAdd){
     });
   };
 
-  $scope.addToNotepad = function(id){
-    NotepadAdd.query({id: id}, function(notepad){
-      console.log("ausgeführt");
+  $scope.addToNotepad = function(job){
+    NotepadAdd.post(job.id, function(notepad){
+      //Update element
+      job.onNotepad = true;
     });
   };
    

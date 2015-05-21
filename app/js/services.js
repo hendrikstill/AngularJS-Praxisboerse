@@ -101,7 +101,7 @@ notepadServices.factory('NotepadAdd', ['$resource',
     return $resource('https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer',
     {},
     {
-      query: {
+      post: {
         method:'POST',
         withCredentials:true
       }
