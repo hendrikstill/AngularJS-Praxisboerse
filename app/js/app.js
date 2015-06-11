@@ -20,5 +20,8 @@ praxisboerseApp.config(['$routeProvider','$httpProvider',
     });
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.withCredentials = true;
-  }
+    $httpProvider.defaults.headers.delete = {
+      'Content-Type': 'application/json'
+    };
+   }
 ]);

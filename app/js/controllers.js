@@ -2,7 +2,7 @@
 
 var praxisboerseControlellers = angular.module("praxisboerseControllers",[]);
 
-praxisboerseControlellers.controller("JobListCtrl",['$scope','$http', 'Job','Country','Type','NotepadAdd',
+praxisboerseControlellers.controller("JobListCtrl",['$scope','$http', 'Job','Country','Type','NotepadOffer',
 function($scope,$http,Job,Country,Type,NotepadAdd){
   $scope.currentPage = 0;
 
@@ -31,12 +31,12 @@ function($scope,$http,Job,Country,Type,NotepadAdd){
   };
 
   $scope.addToNotepad = function(job){
-    NotepadAdd.post(job.id, function(notepad){
+    NotepadOffer.save(job.id, function(notepad){
       //Update element
       job.onNotepad = true;
     });
   };
-   
+
 }]);
 
 praxisboerseControlellers.controller("CompanyDetailsCtrl",['$scope','$http','$routeParams','Company',
@@ -48,23 +48,26 @@ praxisboerseControlellers.controller("CompanyDetailsCtrl",['$scope','$http','$ro
 
 }]);
 
-praxisboerseControlellers.controller("NotepadCtrl", ['$scope', '$http', '$routeParams', 'Notepad', 'NotepadAdd',
+praxisboerseControlellers.controller("NotepadCtrl", ['$scope', '$http', '$routeParams', 'Notepad',
   function($scope, $http, $routeParams, Notepad, NotepadAdd){
-
-    $scope.click = function(){
-      return $resource('https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/' + $routeParams.id,
-      {},
-      {
-        query: {
-          method:'DELETE',
-          withCredentials:true
-        }
-      }
-    )};
-    
-    console.log(Notepad);
-
     Notepad.query({}, function(notepad){
       $scope.jobs = notepad.offers;
     });
+
+    $scope.removeFromNotepad = function (job) {
+      var req = {
+        method: 'DELETE',
+        url: 'https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/'+job.id,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {  } // Hack to send the correct Content-Type
+      };
+
+      $http(req).success(function(){
+        job.onNotepad = !job.onNotepad;
+      });
+    };
+
+
 }]);

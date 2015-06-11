@@ -26,7 +26,7 @@
             <td>{{job.companyLocation}}</td>
             <td>{{job.usageSite}}</td>
             <td>{{job.validDate}}</td>
-            <td><button>{{job.onNotepad}}</button></td>
+            <td ng-click="removeFromNotepad(job)"><button>{{job.onNotepad}}</button></td>
           </tr>
         </tbody>
       </table>
