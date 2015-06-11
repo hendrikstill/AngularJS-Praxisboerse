@@ -30,11 +30,28 @@ function($scope,$http,Job,Country,Type,NotepadOffer){
     });
   };
 
-  $scope.addToNotepad = function(job){
-    NotepadOffer.save(job.id, function(notepad){
-      //Update element
-      job.onNotepad = true;
-    });
+  $scope.changeNotepadStatus = function(job){
+    if (!job.onNotepad) {
+      NotepadOffer.save(job.id, function(notepad){
+        //Update element
+        job.onNotepad = true;
+      });
+    } else {
+      // server request to delte from notepad
+            var req = {
+        method: 'DELETE',
+        url: 'https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/'+job.id,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {  } // Hack to send the correct Content-Type
+      };
+
+      $http(req).success(function(){
+        job.onNotepad = !job.onNotepad;
+      });
+    }
+    
   };
 
 }]);
@@ -53,21 +70,28 @@ praxisboerseControlellers.controller("NotepadCtrl", ['$scope', '$http', '$routeP
     Notepad.query({}, function(notepad){
       $scope.jobs = notepad.offers;
     });
+    
+    $scope.changeNotepadStatus = function(job){
+      if (!job.onNotepad) {
+        NotepadOffer.save(job.id, function(notepad){
+          //Update element
+          job.onNotepad = true;
+        });
+      } else {
+      // server request to delte from notepad
+        var req = {
+          method: 'DELETE',
+          url: 'https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/'+job.id,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: {  } // Hack to send the correct Content-Type
+        };
 
-    $scope.removeFromNotepad = function (job) {
-      var req = {
-        method: 'DELETE',
-        url: 'https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/'+job.id,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: {  } // Hack to send the correct Content-Type
-      };
-
-      $http(req).success(function(){
-        job.onNotepad = !job.onNotepad;
-      });
-    };
-
-
+        $http(req).success(function(){
+          job.onNotepad = !job.onNotepad;
+        });
+      }
+    
+  };
 }]);
