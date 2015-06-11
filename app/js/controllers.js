@@ -3,7 +3,7 @@
 var praxisboerseControlellers = angular.module("praxisboerseControllers",[]);
 
 praxisboerseControlellers.controller("JobListCtrl",['$scope','$http', 'Job','Country','Type','NotepadOffer',
-function($scope,$http,Job,Country,Type,NotepadAdd){
+function($scope,$http,Job,Country,Type,NotepadOffer){
   $scope.currentPage = 0;
 
   Type.query({}, function(types) {
@@ -49,7 +49,7 @@ praxisboerseControlellers.controller("CompanyDetailsCtrl",['$scope','$http','$ro
 }]);
 
 praxisboerseControlellers.controller("NotepadCtrl", ['$scope', '$http', '$routeParams', 'Notepad',
-  function($scope, $http, $routeParams, Notepad, NotepadAdd){
+  function($scope, $http, $routeParams, Notepad, NotepadOffer){
     Notepad.query({}, function(notepad){
       $scope.jobs = notepad.offers;
     });
