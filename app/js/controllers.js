@@ -18,6 +18,7 @@ function($scope,$http,Job,Country,Type,NotepadOffer){
     $scope.isMobile = false;
     var userAgent = navigator.userAgent;
 
+    // mobile detection
     if (userAgent.indexOf("mobile") !== -1 || userAgent.indexOf("Android") !== -1|| userAgent.indexOf("iPhone") !== -1
         || userAgent.indexOf("iPad") !== -1 || userAgent.indexOf("Windows Phone") !== -1) {
           count = 10;
@@ -30,25 +31,26 @@ function($scope,$http,Job,Country,Type,NotepadOffer){
     });
   };
 
+  // add/remove job from notepdad
   $scope.changeNotepadStatus = function(job){
     if (!job.onNotepad) {
       NotepadOffer.save(job.id, function(notepad){
-        //Update element
+        // update button text
         job.onNotepad = true;
       });
     } else {
-      // server request to delte from notepad
+      // server request to delete from notepad
             var req = {
         method: 'DELETE',
         url: 'https://www.iwi.hs-karlsruhe.de/Intranetaccess/REST/joboffer/notepad/offer/'+job.id,
         headers: {
           'Content-Type': 'application/json'
         },
-        data: {  } // Hack to send the correct Content-Type
+        data: {  } // Angular.js fix to send correct Content-Type to HSKA server
       };
 
       $http(req).success(function(){
-        job.onNotepad = !job.onNotepad;
+        job.onNotepad = false;
       });
     }
     
@@ -89,7 +91,7 @@ praxisboerseControlellers.controller("NotepadCtrl", ['$scope', '$http', '$routeP
         };
 
         $http(req).success(function(){
-          job.onNotepad = !job.onNotepad;
+          job.onNotepad = false;
         });
       }
     

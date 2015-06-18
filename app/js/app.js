@@ -18,6 +18,8 @@ praxisboerseApp.config(['$routeProvider','$httpProvider',
       templateUrl:"partials/notepad.html",
       controller:"NotepadCtrl"
     });
+    
+    // Authentication headers
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.headers.delete = {
